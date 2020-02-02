@@ -1,0 +1,15 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main()
+{
+  map<int, char> miMapa;
+  miMapa[1] = 'u';
+  miMapa[2] = 'd';
+  miMapa[3] = 't';
+  miMapa[4] = 'c';
+  miMapa[5] = 'c'; 
+
+  return 0;
+}
