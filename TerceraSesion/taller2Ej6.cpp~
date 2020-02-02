@@ -1,0 +1,28 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+
+bool sebset(set<int> &a, set<int> &b)
+{
+  //pasarlos por referencia para no oucpar mas memoria
+  set<int>::iterator itA;
+  set<int>::iterator itB;
+  bool retorno = false;
+ 
+  for(itA =a.begin(); it < a.end(); it++)
+    {
+      if(b.count(*it) == 1)
+	{
+	  retorno = true;
+	}
+      
+    }
+
+  return retorno;
+}
+int main()
+{
+  set<string>::iterator it;
+  return 0;
+}

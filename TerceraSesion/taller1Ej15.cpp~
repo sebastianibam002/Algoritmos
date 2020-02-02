@@ -1,0 +1,10 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main()
+{
+  queue<double> cola ={1.0,2.0};
+  //int hasta = cola.size() //2; 
+  return 0;
+}

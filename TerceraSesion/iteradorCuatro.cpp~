@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+  vector<int> v= {1,2,3};
+  vector<int>::iterator it;
+
+  for(it = v.begin(); it != v.end(); i++)
+    {
+      if(it == v.begin() + 1)
+	{
+	  it = v.insert(it, 5);
+	}
+    }
+  return  0;
+}

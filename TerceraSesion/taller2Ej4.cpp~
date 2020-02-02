@@ -1,0 +1,17 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main()
+{
+  set<int> setUno;
+  for(int i = 0; i< 10; i++)setUno.insert(i);
+  //eliminar elementos
+  setUno.erase(8);
+  setUno.erase(setUno.begin() ,setUno.begin() +1);
+  cout<<"esta vacio? "<<setUno.empty()<<endl;
+  cout<<"El elemento 8 esta? "<<setUno.count(8)<<endl;
+
+
+  return 0;
+}

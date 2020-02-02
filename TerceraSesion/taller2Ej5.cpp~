@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+
+int main()
+{
+  set<string> conjunto;
+  conjunto.insert("juan");
+  conjunto.insert("sebastian");
+  conjunto.insert("santi");
+  conjunto.insert("pedro");
+  conjunto.insert("rodrigo");
+  conjunto.erase("rodrigo")
+  
+  return 0;
+}
