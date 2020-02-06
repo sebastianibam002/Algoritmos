@@ -1,0 +1,17 @@
+#include <iostream>
+#include <vector>
+#include <list>
+#include <stack>
+using namespace std;
+
+int main()
+{
+  vector<int> myVector(2,200);
+  list<int> myList(2,200);
+  stack<int> first;
+  stack<int, vector<int>> second(myVector);
+  stack<int, list<int>> third(myList); 
+  cout<<"size of first: "<<first.size()<<endl;
+  cout<<"size of second: "<<second.size()<<endl;
+  return 0;
+}

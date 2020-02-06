@@ -1,0 +1,17 @@
+#include <iostream>
+#include <list>
+using namespace std;
+int main()
+{
+  list<int> myList;
+  for(int i = 0; i <= 10; i++)
+    {
+      
+      myList.push_back(i);
+
+    }
+  
+  //determinar el tamano de la lista
+
+  cout<<" tamano lista: " <<myList.size()<<endl;
+}
