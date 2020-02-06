@@ -1,0 +1,14 @@
+#include <iostream>
+#include <vector>
+
+int main()
+{
+  //se escribe <int> de esta manera
+  std::vector<int> first; //tamano cero
+  std::vector<int> second(4,100);
+  std::vector<int> third(second); //copia de otro vector
+
+
+  int myints[] = {16,2,77,29};
+  std::vector<int> fourth(myints, myints + sizeof(myints) / sizeof(int));
+}

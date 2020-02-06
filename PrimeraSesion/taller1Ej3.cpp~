@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+void imprimirPos(vector<int> pVector)
+{
+	for(unsigned int i = 0; i< pVector.size(); i++)
+	{
+		cout<< i <<pVector[i]<<endl;
+	}
+
+int mayorCaracter(vector<int> pVector, unsigned int pHasta)
+{
+	int mayorValor = pVector[0];
+	unsigned int indice = 0;
+	for(unsigned int i = 0; i< pHasta; i++)
+	{
+		if(pVector[i]  > mayorValor)
+		{
+			mayorValor = pVector[i];
+			indice= i;	
+		}
+	}
+	return indice;
+}
+
+void colocarFinal(vector<int> &pVector, unsigned int pIndice)
+{
+	if(pIndice < pVector.size())
+	{
+		int elemento = 0;
+		elemento = pVector[pIndice];
+		pVector.erase(pVector.begin()+pIndice, pVector.begin()+ 1 +pIndice);
+		pVector.push_back(elemento);
+	}
+	else
+	{
+		cout<<pIndice<<endl;
+	}
+}
+
+void rotarVector(vector<int> &pVector)
+{
+	int valor = pVector.size() -1;
+	for(unsigned int i = 0 ; i < pVector.size(); i++)
+	{
+		colocarFinal(pVector, valor);
+		valor--;
+	}
+
+}
+void organizador(vector<int> &pVector)
+{
+
+	imprimirPos(pVector);
+	unsigned int hasta = pVector.size();
+	for(unsigned int i = 0; i < pVector.size();i++)
+	{
+		unsigned int indiceMayor = mayorCaracter(pVector, hasta);
+		colocarFinal(pVector, indiceMayor);
+		hasta -= 1;
+		cout<<"indiceMayor: "<<"hasta: "<<hasta<<endl;
+	}
+	rotarVector(pVector);
+	imrpimirPos(pVector); 
+}
+int main()
+{
+
+}
