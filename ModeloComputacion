@@ -31,3 +31,8 @@ for(i= 0; i < n; i++)//u + u(n+1) + 2n
   for(j = 0; j < n; j++)//hay u + u(n+1) + 2n
     k++;//tomemos los mas mas como dos porque es una suma y re asignan es decir aqui hay 2 unidades
 }
+
+Ejercicio 2 
+el if cuenta como u comparador y se asume el peor caso es es coo si se entrara
+
+3+2+5(j- i + 1)
