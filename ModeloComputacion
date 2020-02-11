@@ -1,0 +1,33 @@
+Una unidad de tiempo en el modelo idealizado RAM
+Los tipos de datos primitivos se asumen que ocupan una unidad de memoria 
+y una unidad dde tiemo ede opreaciones. 
+Operaciones basicas: booleanas /comptaraciones/ aritmeticas
+1: del mas interno hacia afuera
+
+partialSum += i *i*i //cuatro opereaciones
+desde andetro hacia afuera
+for(int i = 1; i <= n; i++)//Ua unidad  1u + 1u*n y se llega hasta la comptracion al salir op tlo tanto es u + u(n +1) 1u*n en el ultimo
+Y el asunto de abajo se hace n veces dentro del for como tal
+
+for(int i = 1; i<= n; i++)
+{
+  partialSum += i *i*i; 
+}
+//2+ 6n es el total del for en terminos de unidades
+se le suma ahora una signacion de;
+partialSum = 0; //1unidad
+//las declaraciones no cuesta nada pero el retrun si vale
+return partialSum; una unidad
+
+//Significa que es lineas es decir 6n+4 = tetha(n) es decir que es un polinomio
+
+Ejercicio 1:
+// 2+ 3n +(5n + 2)n 
+= 5n**2 + 5n + 2 = tetha(n**2)
+// 1 + 1(n+1) + 2n //el uno funciona como el valor de la unidad
+for(i= 0; i < n; i++)//u + u(n+1) + 2n
+{
+  //todo se corre una unidad ed da 5n +2
+  for(j = 0; j < n; j++)//hay u + u(n+1) + 2n
+    k++;//tomemos los mas mas como dos porque es una suma y re asignan es decir aqui hay 2 unidades
+}
