@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+float dispble(vector<float> consumo, float cupo_tot)
+{
+  float total;
+  
+  for(unsigned int i = 0; i < consumo.size(); i++)
+    {
+      total += consumo[i];
+    }
+
+  return cupo_tot - total;
+}
+
+float transcc(vector<float> consumo, float cupo_tot)
+{
+
+  float total;
+  unsigned int indice = 0;
+  for(unsigned int i = 0; i < consumo.size(); i++)
+    {
+      total += consumo[i];
+      if(total > cupo_tot)
+	indice = i -1;
+      
+    }
+
+  if(total < cupo_tot)
+    {
+      return -1;
+    }
+  else
+    {
+      return indice;
+    }
+  
+
+  
+}
+
+
+int main()
+{
+  vector<float> consumo = {6.6, 1.1, 4.4, 2.2};
+  float cupo_tot = 8;
+  cout<<"ultima transcc: "<<transcc(consumo, cupo_tot)<<endl;
+
+
+  return 0;
+}
