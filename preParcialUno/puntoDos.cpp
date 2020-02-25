@@ -31,40 +31,41 @@ void printMap(map<int, int> miMapa)
   
 }
 
-map<int, int> collatz(int n)
+map<int, int> collatz(int pHasta)
 {
-
-  map<int, int> myMap;
   int contador = 0;
-  
-   do{
-     //cout<<"contador: "<<contador <<"n: "<<n<<endl;
-      myMap[contador] = n;
-      cout<<myMap[contador]<<endl;
-      if(n %2== 0)
-	n = int(n/2);
-      
+  map<int, int> retorno;
+  while(true)
+    {
+      if(pHasta == 1)
+	{
+	  //cout<<"1" << " ";
+	  retorno[contador] = 1;
+	  return retorno;
+	}
+      else if(pHasta %2 == 0)
+	{
+	  retorno[contador] = pHasta;
+	  pHasta /= 2;
+	  //cout<< pHasta<< " ";
+	  
+	}
       else
-	n = int(n*3) +1;
-      
-      
+	{
+	  retorno[contador] = pHasta;
+	  pHasta = pHasta*3 + 1; 
+	  //cout<<pHasta<<" ";
+	  
+	}
+
       contador += 1;
-
-      
-
-   }while(n != 1);
-   //contador += 1;
-   //myMap[9] = 1;
-   //cout<<myMap.size()<<endl;
-  
-
-  
-  return myMap;
+    }
 }
 
 int main()
 {
   map<int, int> mapa = collatz(6);
   printMap(mapa);
+  //collatz(6) = ;
   return 0;
 }

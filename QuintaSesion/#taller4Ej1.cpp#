@@ -44,6 +44,7 @@ void bubble_sort_double(vector<int> &v)
 
       
       swap_used = false;
+    }
     
       for(int i = v.size() -3; i >= 0; i--)
 	{
