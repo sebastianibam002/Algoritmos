@@ -1,0 +1,20 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+
+float median(stack<float>& S) {
+  /*
+   *Su código aquí
+   */
+}
+
+int main() {
+  stack<float> s;
+  for(int i = 3; i < 11; ++i)
+    s.push(i);
+
+  cout << median(s) << endl;
+  
+  return 0;
+}

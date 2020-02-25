@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int collatz(int num):
+  if(num == 1)
+    {
+      return 1;
+    }
+  else if(num %2 == 0)
+    {
+      num = num /2;
+      return collatz(num);
+    }
+  else
+    {
+      num = 3 * num + 1;
+      return collatz(num);
+    }
+   
+
+
+
+int main()
+{
+
+  
+
+  return 0;
+}
