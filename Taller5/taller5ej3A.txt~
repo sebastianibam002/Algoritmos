@@ -1,0 +1,14 @@
+a)logaritmico:
+T(N) = 0.5ms
+//100 es el tamano del conjunto de datos
+T(100) = c*log2(100)
+//c = una cnstante por la que semultiplica cada uno d elos tiempos de ejecucion
+//RECORDAR: No importan medidas pero deben ser las mismas
+0.0005s = c*log2(100)
+0.0005s/log2(100) = c
+c = 7.5257e-5
+T(N) = 60s
+C*log2(N)= 60s
+2**(60) = c*N
+2**((60)/c) = N
+N = 2**(800000)
