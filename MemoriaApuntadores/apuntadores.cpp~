@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+int main ()
+{
+  int numero = 5;
+  int *apuntador;
+  apuntador = &numero;
+  cout<<*apuntador << " : " apuntador<<endl;
+  return 0;
+}

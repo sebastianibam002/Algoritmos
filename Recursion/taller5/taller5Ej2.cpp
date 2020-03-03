@@ -2,25 +2,31 @@
 #include <string>
 using namespace std;
 
-string inverse(string pString, unsigned int pHasta)
+string inverse(string pString)
 {
-  if((pString.length()-1) == pHasta)
+
+  
+  if(pString.length() <=  1)
     {
+
+      
       return pString;
       
     }
   else
     {
-      pHasta++;
-      char elemento = pString[pHasta];
-      pString.erase(pString.begin(), pString.begin() + pHasta - 1);
-      cout<<pString<<" elemento: "<< elemento << " hasta: "<< pHasta<<endl;
-      return elemento + inverse(pString, pHasta);
+      int end = pString.length()-1;
+      char inicio = pString[0];
+      pString[0] = pString[pString.length()-1];
+      pString[pString.length()-1] = inicio;
+      cout<<"end: "<<pString[end]<<" inicio: "<<pString[0]<<endl;
+      return pString[0]+ inverse(pString.substr(1,end-1)) + pString[end];
     }
 }
 
 int main()
 {
-  cout<<"inversa sebas: "<<inverse("sebas", 0)<<endl;
+  cout<<"inverse: "<<inverse("sabes")<<endl;
+  
   return 0;
 }
