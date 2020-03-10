@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+char *deep_copy(char *ch, const unsigned int tamano)
+{
+  char arreglo[tamano];
+
+  for(unsigned int i = 0; i < tamano; i++)
+    {
+      arreglo[i] = *(ch+i); 
+    }
+  return 
+}

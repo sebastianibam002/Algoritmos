@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+int maxNum(int *arreglo, const unsigned int tamano)
+{
+  int mayor = 0;
+  for(unsigned int i = 0; i < tamano; i++)
+    {
+      if(arreglo[i] > mayor)
+	mayor = arreglo[i];
+    }
+
+
+  return mayor;
+ }
+
+
+int main()
+{
+
+  return 0;
+}
