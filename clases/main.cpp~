@@ -1,0 +1,29 @@
+#include <iostream>
+#include "dynarray.hpp"
+using namespace std;
+
+DynArray::DynArray(int s)
+{
+  
+  array = new int[s];
+  size = s;
+}
+
+DynArray::~DynArray(){}
+
+int DynArray::get(int pos)
+{
+  return array[pos];
+  
+}
+
+void DynArray::set(int pos, int val)
+{
+  array[pos] = val;
+  
+}
+
+int DynArray::getsize()
+{
+  return size;
+}
