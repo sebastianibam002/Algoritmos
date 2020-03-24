@@ -1,0 +1,15 @@
+#include <iostream>
+#include "charstack.hpp"
+using namespace std;
+
+
+int main()
+{
+  CharStack my_stack;
+  for(int i = 65; i < 78; i++)
+    my_stack.push(char(i));
+
+
+  cout<< my_stack.top()<<endl;
+  return 0;
+}

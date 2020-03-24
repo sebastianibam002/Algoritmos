@@ -1,0 +1,12 @@
+#include "vector2d.cpp"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  Vector2D myVec;
+
+  cout<<myVec.norm()<<endl;
+
+  return 0;
+}
