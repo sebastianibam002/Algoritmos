@@ -1,0 +1,20 @@
+#include <iostream>
+#include "taller9Ej1.hpp"
+
+
+int main()
+{
+  Stack <int>myStack;
+  std::cout<<"hey"<<std::endl;
+  int a = 22;
+  myStack.push(a);
+  std::cout<<"top: "<<myStack.peek()<<std::endl;
+  int b = 32;
+  myStack.push(b);
+  std::cout<<"top: "<<myStack.peek()<<std::endl;
+  std::cout<<"le hice pop: "<<myStack.pop()<<std::endl;
+  std::cout<<"top: "<<myStack.peek()<<std::endl;
+  std::cout<<"esta vacio? "<<myStack.empty()<<std::endl;
+  
+  return 0;
+}

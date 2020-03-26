@@ -1,0 +1,73 @@
+template <typename dataType>
+class Stack
+{
+
+priavte:
+  private Cell
+  {
+    dataType data;
+    Cell *link;
+  };
+
+  Cell stack;
+  int count;
+
+  void deepCopy(const Stack<datatype> &src);
+
+
+public:
+  Stack();
+  ~Stack();
+  int size();
+  bool empty();
+  void clear();
+  void push(dataType &ch);
+  dataType pop();
+  dataType peek();
+};
+
+
+template<typename t>
+Stack<t>::Stack()
+{
+  //no hay nada es el constructor, se podria
+  count = 0;
+  
+}
+
+//TODO: Destructor
+
+template<typename t>
+int Stack<t>::size()
+{
+  return count;
+}
+
+template<typename t>
+bool Stack<t>::empty()
+{
+  return stack->link == nullptr;
+}
+
+template <typename t>
+void Stack<t>::clear()
+{
+  while(!(empty))
+    {
+      pop();
+    }
+}
+
+template <typename dataType>
+void Stack<t>::push(dataType &ch)
+{
+  //debe anadir un elemento al stack
+  //segun la deificion de stack quiere decir que el primero que entra es el primero que sale
+  Cell nuevoElemento = new Cell<dataType>;
+  //ahora debo introducirle el nuevo elemento
+  nuevoElemento->data = ch;
+  
+}
+
+
+

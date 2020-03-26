@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int add(int a, int b)
+{
+  return a+ b;
+}
+
+
+int main()
+{
+
+  int x = 3, y = 5;
+  cout<<"la suma de x y y; "<<add(x,y)<<endl;
+  return 0;
+}

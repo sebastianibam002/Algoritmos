@@ -1,0 +1,11 @@
+#include <iostream>
+#include "mylist.hpp"
+
+int main()
+{
+  MyList <char>lista;
+  for(unsigned int i = 0; i <= 10; i++)
+    lista.push_back(char(i));
+
+  return 0;
+}
