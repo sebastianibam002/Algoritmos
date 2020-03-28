@@ -1,0 +1,16 @@
+#ifndef _MYQUEUE_HPP
+#define _MYQUEUE_HPP
+
+#include <stdexcept>
+#include <iostream>
+
+namespace listqueue
+{
+}
+
+
+namesoace arrayqueue{
+
+}
+
+#endif
