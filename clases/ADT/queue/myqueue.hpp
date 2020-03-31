@@ -36,6 +36,7 @@ namespace listqueue
     T get_front();
     T get_back();
     void clear();
+    void print();
     
   };
 
@@ -161,6 +162,20 @@ namespace listqueue
 	pop();
       }
   }
+
+  template<typename T>
+  void MyQueue<T>::print()
+  {
+    Cell<T> *ptr = front;
+    while(ptr != nullptr)
+      {
+	std::cout << ptr->val <<" ";
+	ptr = ptr->next;
+      }
+
+    std::cout<<std::endl;
+    
+  }
  
   
 }
@@ -168,7 +183,180 @@ namespace listqueue
 
 namespace arrayqueue
 {
-  const int a = 5;
+  //es bueno definir una capacidasd inicail para nuestra cola, luego se declara como una constante esa capacidad a un numerodadoe n este caso 10,ques es de memoria
+  const int INITIAL_CAPACITY = 10; 
+  
+  template<typename T>
+  class MyQueue
+  {
+  private:
+    T *array;
+    int capacity;
+    int back;
+    int front;
+    int count;
+
+    void expand_capacity();
+  public:
+    MyQueue();
+    ~MyQueue();
+
+    bool empty();
+    int size();
+    T get_front();
+    T get_back();
+    void push(T c);
+    void pop();
+    void print();
+  };
+
+  //para separar memoria es con new
+  //capacity es diferente al tamano de la cola
+  template<typename T>
+  MyQueue<T>::MyQueue()
+  {
+    capacity = INITIAL_CAPACITY;
+    //separamos el espacio en memoria
+    array = new T[capacity];
+    back = front = 0;
+    count = 0;
+  }
+
+  template<typename T>
+  MyQueue<T>::~MyQueue()
+  {
+    //en este caso diferente al de la lista, si le colocamos los corchetes porque es como tal todo un arreglo lo que queremos eliminar
+    delete[] array;
+  }
+
+  template<typename T>
+  bool MyQueue<T>::empty()
+  {
+    //esta vacio
+    return count == 0;
+  }
+
+  template<typename T>
+  int MyQueue<T>::size()
+  {
+    return count;
+  }
+
+  template<typename T>
+  T MyQueue<T>::get_front()
+  {
+    //se retora el elemento ubicado en el array front
+    if(empty())
+      {
+	throw std::runtime_error("Attempting to access an element on an empty queue");
+      }
+    else
+      {
+	return array[front];
+      }
+  }
+
+  template<typename T>
+  T MyQueue<T>::get_back()
+  {
+    //se retorna back menos uno porque back esta un espacio adelante de su elemento como tal, no es como la cell que estaba en ese mismo lugar
+    if(empty())
+      {
+	throw std::runtime_error("Attempting to access an element on a empty queue");
+      }
+    else
+      {
+	return array[back-1];
+      }
+  }
+  template<typename T>
+  void MyQueue<T>::push(T c)
+  {
+    //si el tamano del arreglo ya es igual a la capacidad, nada que hacer hay que expamndir esta
+    if(count == capacity)expand_capacity();
+    //se coloca en back el nuevo elemento
+    array[back] = c;
+    //lo que garantiza que si hay espacio de pops anteriores al inicio se pueda como tal almacenarce alla
+    back = (back+1)%capacity;
+    count++;
+    
+  }
+
+  template<typename T>
+  void  MyQueue<T>::pop()
+  {
+    if(empty())
+      {
+	throw std::runtime_error("Attempting to delete an element on an empty queue");
+      }
+    else
+      {
+	
+	//voy a borrar el pimer elemento en la cola en realidad moverme uno
+	front = (front+1)%capacity;
+	count--;
+      }
+  }
+
+  template<typename T>
+  void MyQueue<T>::expand_capacity()
+  {
+    //guaro un apuntador que tenga esa antigua memoria
+    T *old_array = array;
+    int old_capacity = capacity;
+    //duplico el tamano de memori
+    capacity *= 2;
+    //creo el nuevo array con esa memoria duplicada
+    array = new T[capacity];
+    //este es el caso ideal donde solo de debe mover cada elemento en su misma posicion
+    if(back > front)
+      {
+	for(int i = 0; i < back;i++)
+	  {
+	    array[i] = old_array[i];
+	  }
+	
+      }
+    else
+      {
+	//primero para los elementos del final
+	for(int i = 0; i < back; i++)
+	  array[i] = old_array[i];
+	int d = old_capacity - front;
+	front = capacity - d;
+	for(int i = front; i < capacity; i++)
+	  array[i] = old_array[i-old_capacity];
+      }
+    delete[] old_array;
+  }
+
+  template<typename T>
+  void MyQueue<T>::print()
+  {
+    std::cout<<"f:"<<front<<" b:"<<back<<std::endl;
+    for(int i = 0; i < capacity; ++i)
+      {
+	if(back > front)
+	  {
+	    if(i >= front && i < back && ! empty())
+	      std::cout<<array[i]<<" ";
+	    else
+	      std::cout<<"- ";
+	  }
+	else
+	  {
+	    if((i < back || i >= front) && !empty())
+	      std::cout<<array[i]<<" ";
+	    else
+	      std::cout<<"- ";
+	  }
+      }
+    std::cout<<std::endl;
+  }
+  
+
+  
+  
 }
 
 #endif
