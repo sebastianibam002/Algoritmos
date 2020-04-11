@@ -1,0 +1,73 @@
+
+#include "taller8Ej1.hpp"
+
+Racional::Racional()
+{
+  numerador =  0;
+  denominador = 1;
+}
+
+Racional::Racional(int p_num, int p_dem)
+{
+  if(p_dem == 0)
+    {
+      throw std::runtime_error("the denominator can't be 0");
+    }
+  else
+    {
+      numerador = p_num;
+      denominador = p_dem;
+    }
+}
+
+Racional::~Racional(){}
+
+int Racional::get_numerador()
+{
+  return numerador;
+}
+
+int Racional::get_denominador()
+{
+  return denominador;
+}
+
+void Racional::set_numerador(int p_valor)
+{
+  numerador = p_valor;
+}
+
+void Racional::set_denominador(int p_valor)
+{
+  if(p_valor == 0)
+    {
+      throw std::runtime_error("the denominator can't be 0");
+    }
+  else
+    {
+      denominador = p_valor;
+    }
+}
+
+void Racional::print()
+{
+  std::cout<<"["<<numerador<<"]"<<std::endl<<"["<<denominador<<"]"<<std::endl;
+}
+
+Racional Racional::operator=(Racional p_new)
+{
+  numerador = p_new.get_numerador();
+  denominador = p_new.get_denominador();
+  return p_new;
+  
+  
+}
+
+ostream& operator<<(ostream& os, Racional& a)
+{
+  os <<"["<<a.get_numerador()<<"]"<<endl<<"--"<<endl<<"["<<a.get_denominador()<< "]"<<endl;
+
+  
+  
+  return os; 
+}

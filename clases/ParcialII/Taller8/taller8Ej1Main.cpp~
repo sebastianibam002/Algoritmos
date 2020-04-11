@@ -1,0 +1,14 @@
+#include "taller8Ej1.hpp"
+using namespace std;
+int main()
+{
+
+  Racional numero;
+
+  numero.set_numerador(1);
+  numero.set_denominador(2);
+  cout<<numero<<endl;
+    
+
+  return  0;
+}

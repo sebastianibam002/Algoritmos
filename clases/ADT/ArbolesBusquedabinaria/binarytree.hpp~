@@ -1,0 +1,13 @@
+#ifndef _BINARYTREE_HPP
+#define _BINARYTREE_HPP
+
+template <typename T>
+struct BSTNode
+{
+  T key;
+  BSTNode *left;
+  BSTNode *right;
+};
+
+
+#endif

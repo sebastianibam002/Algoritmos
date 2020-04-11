@@ -1,0 +1,9 @@
+//una funcion recursiva que toma un entero mayor o igual a cero y debe retornar la suma de cada uno de sus digitos
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+  return 0;
+}

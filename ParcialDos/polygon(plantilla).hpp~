@@ -1,0 +1,10 @@
+#ifndef _POLYGON_HPP
+#define _POLYGON_HPP
+
+#include <cmath>
+
+/*
+ *Interfases aquí
+ */
+
+#endif
