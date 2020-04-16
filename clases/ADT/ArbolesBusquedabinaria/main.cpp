@@ -22,6 +22,8 @@ int main()
   */
   
   BST<int> myTree;
+
+  /*
   myTree.insert(30);
   myTree.insert(16);
   myTree.insert(40);
@@ -35,8 +37,16 @@ int main()
   myTree.insert(4);
   myTree.insert(15);
   myTree.display();
-  myTree.test(15);
-  myTree.test(32);
+  //myTree.test(15);
+  */
+  myTree.insert(5);
+  myTree.insert(3);
+  myTree.insert(6);
+  myTree.insert(4);
+  myTree.insert(2);
+  myTree.display();
+  myTree.test(5);
+  myTree.display();
   
   return 0;
 }

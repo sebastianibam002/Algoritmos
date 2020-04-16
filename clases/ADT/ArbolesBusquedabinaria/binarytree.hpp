@@ -47,9 +47,102 @@ public:
   //Predecesor y sucesor
   BSTNode<T> *predecessor(BSTNode<T> *pNode); //le doy un nodo y me deberia retorna el predecesor de este
   BSTNode<T> *sucessor(BSTNode<T> *pNode);
+
+  //Removiendo Nodos
+  void removeNode(BSTNode<T> *pNode);
+
 };
 
+template<typename T>
+void BST<T>::removeNode(BSTNode<T> *pNode)
+{
+  //remueve un nodo dado este
+  //caso uno el nodo solo tiene dos hijos nullptr
+  if(pNode->left == nullptr && pNode->right == nullptr)
+    {
+      //lo remuevo de su padre
 
+      BSTNode<T> *parent = pNode->parent;
+ 
+      if(parent->left == pNode)
+	{
+	  delete pNode;
+	  //std::cout<<"padre hijo izquierdo"<<std::endl;
+	  parent->left = nullptr;
+
+	}
+      else
+	{
+	  delete pNode;
+	  parent->right = nullptr;
+	}
+
+      //delete pNode;
+    }
+  else if(pNode->left != nullptr && pNode->right == nullptr)
+    {
+      //en el caso de que tenga un hijo bien sea en la inzquiera o la derecha pero no en los dos al mismo tiempo
+
+      BSTNode<T>*temp = pNode->left;
+      BSTNode<T>*padre = pNode->parent;
+      if(padre->left == pNode)
+	{
+	  delete pNode;
+	  padre->left = temp;
+	  temp->parent = padre;
+	}
+      else
+	{
+	  delete pNode;
+	  padre->right = temp;
+	  temp->parent = padre;
+	}
+      //delete pNode;
+      
+    }
+  else if(pNode->right != nullptr && pNode->left == nullptr)
+    {
+
+      //en el caso de que tenga un hijo bien sea en la inzquiera o la derecha pero no en los dos al mismo tiempo
+      BSTNode<T>*temp = pNode->right;
+      if((pNode->parent)->left == pNode)
+	(pNode->parent)->left = temp;
+      else
+	(pNode->parent)->right = temp;
+
+      delete pNode;
+    }
+  else
+    {
+      //en el caso donde tenga dos hijos, toca encontrar un sucesor
+      BSTNode<T>*replace = sucessor(pNode);
+      BSTNode<T>*leftSon = pNode->left;
+      BSTNode<T>*rightSon = pNode->right;
+
+      
+      if(pNode == root)
+	{
+	  //TODO: en el caso el parent es root o que el sea root
+	  delete pNode;
+	  root = replace;
+	  replace->left = leftSon;
+	  replace->right = rightSon;
+	  replace->parent = nullptr;
+	}
+      else
+	{
+	  //TODO: en el caso el parent es root o que el sea root
+	  BSTNode<T>*parent = pNode->parent;
+	  delete pNode;
+	  std::cout<<"replace: "<< replace->key<<std::endl;
+	  replace->left = leftSon;
+	  leftSon->parent = replace;
+	  //replace->right = rightSon;
+	  replace->parent = parent;
+	}
+    }
+  
+}
 
 
 
@@ -175,8 +268,10 @@ void BST<T>::test(T val)
 
   //std::cout<<"Lowest element: "<<minimum(root)->key<<std::endl;
   //std::cout<<"Highest element: "<<maximum(root)->key<<std::endl;
-  std::cout<<"El predecessor de: "<<val<<" es "<<predecessor(find(val))->key<<std::endl;
-  std::cout<<"El sucessor de: "<<val<<" es "<<sucessor(find(val))->key<<std::endl;
+  //std::cout<<"El predecessor de: "<<val<<" es "<<predecessor(find(val))->key<<std::endl;
+  //std::cout<<"El sucessor de: "<<val<<" es "<<sucessor(find(val))->key<<std::endl;
+  removeNode(find(val));
+  
 }
 
 
