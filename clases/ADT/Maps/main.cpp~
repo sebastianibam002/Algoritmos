@@ -1,0 +1,10 @@
+#include<iostream>
+#include"mymap.hpp"
+using namespace std;
+int main()
+{
+
+  MyMap<int, int>prueba;
+  
+  return 0;
+}
