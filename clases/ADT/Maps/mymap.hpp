@@ -125,7 +125,7 @@ int MyMap<KT, VT>::find(KT key)
 template<typename KT, typename VT>
 bool MyMap<KT, VT>::contains(KT key)
 {
-  if(find < 0)
+  if(find(key) < 1)
     {
       return false;
     }
@@ -145,6 +145,28 @@ VT MyMap<KT, VT>::get(KT key)
     {
       throw std::runtime_error("Attempting to access an element that doesn't exist");
     }
+}
+
+template<typename KT, typename VT>
+void MyMap<KT, VT>::remove(KT key)
+{
+  //dada una llave hay que buscar el elemento y removerlo
+  int elemento = find(key);
+  if(elemento > -1)
+    {
+      for(int i = elemento; i < count -1; i++)
+	{
+	  array[i].key = array[i+1].key;
+	  array[i].value = array[i+1].value;
+	}
+      count--;
+    }
+  else
+    {
+      throw std::runtime_error("Attempting to romve an element that doesn't exists");
+    }
+
+  
 }
 
 #endif
