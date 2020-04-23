@@ -49,12 +49,12 @@ public:
   BSTNode<T> *sucessor(BSTNode<T> *pNode);
 
   //Removiendo Nodos
-  void removeNode(BSTNode<T> *pNode);
+  BSTNode<T>* removeNode(BSTNode<T> *pNode, T k);
 
 };
 
 template<typename T>
-void BST<T>::removeNode(BSTNode<T> *pNode)
+BSTNode<T>*BST<T>::removeNode(BSTNode<T> *pNode, T k)
 {
   //remueve un nodo dado este
   //caso uno el nodo solo tiene dos hijos nullptr
@@ -114,34 +114,16 @@ void BST<T>::removeNode(BSTNode<T> *pNode)
     }
   else
     {
-      //en el caso donde tenga dos hijos, toca encontrar un sucesor
-      BSTNode<T>*replace = sucessor(pNode);
-      BSTNode<T>*leftSon = pNode->left;
-      BSTNode<T>*rightSon = pNode->right;
-
-      
-      if(pNode == root)
-	{
-	  //TODO: en el caso el parent es root o que el sea root
-	  delete pNode;
-	  root = replace;
-	  replace->left = leftSon;
-	  replace->right = rightSon;
-	  replace->parent = nullptr;
-	}
-      else
-	{
-	  //TODO: en el caso el parent es root o que el sea root
-	  BSTNode<T>*parent = pNode->parent;
-	  delete pNode;
-	  std::cout<<"replace: "<< replace->key<<std::endl;
-	  replace->left = leftSon;
-	  leftSon->parent = replace;
-	  //replace->right = rightSon;
-	  replace->parent = parent;
-	}
+      BSTNode<T> *n = find_node(pNode, k);
+      //caso que tenga dos hijos
+      BSTNode<T>*s = sucessor(n);
+      //se halla el sucesor
+      T new_key = s->key;
+      //la nueva key sera la de s
+      pNode = removeNode(s->parent, s->key);
+      n->key = new_key;
     }
-  
+  return nullptr;
 }
 
 
@@ -270,7 +252,7 @@ void BST<T>::test(T val)
   //std::cout<<"Highest element: "<<maximum(root)->key<<std::endl;
   //std::cout<<"El predecessor de: "<<val<<" es "<<predecessor(find(val))->key<<std::endl;
   //std::cout<<"El sucessor de: "<<val<<" es "<<sucessor(find(val))->key<<std::endl;
-  removeNode(find(val));
+  //removeNode(find(val));
   
 }
 

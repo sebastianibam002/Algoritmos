@@ -1,0 +1,13 @@
+#include "hashmap.hpp"
+#include<iostream>
+using namespace std;
+
+int main()
+{
+
+  HashMap<int> my_map;
+  cout<<my_map.size()<< " : "<<my_map.empty()<<endl;
+  my_map.insert("a",33);
+  my_map.insert("b", 44);
+  my_map.display();
+}
