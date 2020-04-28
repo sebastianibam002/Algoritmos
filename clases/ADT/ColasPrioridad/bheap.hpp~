@@ -1,0 +1,57 @@
+#ifndef _BHEAP_HPP
+#define _BHEAP_HPP
+
+const int INITIAL_CAPACITY = 10;
+template<typename T>
+class Bheap
+{
+
+private:
+  T *array;
+  int capacity;
+  int count;
+
+  //llegamos al limite de  nuestra capacidad
+  void expandCapacity();
+  int parent(int i);
+  int right(int i);
+  //es el metodo queu se asegura que quede siempre ordenado
+  void max_heapify(int i);
+public:
+  Bheap();
+  ~Bheap();
+
+  bool empty();
+  int size();
+  void pish(T x);
+  T pop();
+
+  void printHeap()
+  
+};
+
+twmplate<typename T>
+void Bheap<T>::max_heapify(int i)
+{
+  int id = i+ 1;
+  int l = left(id) -1;
+  int r = right(id) -1;
+  int largest;
+  //veo quien es el mayor de todos
+  if(l < count && array[l] > array[i])
+    largest = l;
+  else
+    largest = i;
+  if(r < count && array[r] > array[largest])
+    largest = r;
+  if(largest != i)
+    {
+      T c = array[i];
+      array[i] = array[largest];
+      array[largest] = c;
+      max_heapify(largest);
+    }
+}
+
+
+#endif

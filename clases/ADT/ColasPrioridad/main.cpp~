@@ -1,0 +1,11 @@
+#include "bheap.hpp"
+using namespace std;
+
+int main()
+{
+  Bheap<int> prueba;
+  prueba.push(22);
+  prueba.printHeap();
+  
+  return 0;
+}

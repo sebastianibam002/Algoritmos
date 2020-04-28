@@ -46,86 +46,73 @@ public:
   BSTNode<T>* find(T k){return find_node(root, k);}
   //Predecesor y sucesor
   BSTNode<T> *predecessor(BSTNode<T> *pNode); //le doy un nodo y me deberia retorna el predecesor de este
-  BSTNode<T> *sucessor(BSTNode<T> *pNode);
+  BSTNode<T> *successor(BSTNode<T> *pNode);
 
   //Removiendo Nodos
-  BSTNode<T>* removeNode(BSTNode<T> *pNode, T k);
+  BSTNode<T>* remove_node(BSTNode<T> *node, T k);
 
 };
 
-template<typename T>
-BSTNode<T>*BST<T>::removeNode(BSTNode<T> *pNode, T k)
-{
-  //remueve un nodo dado este
-  //caso uno el nodo solo tiene dos hijos nullptr
-  if(pNode->left == nullptr && pNode->right == nullptr)
-    {
-      //lo remuevo de su padre
-
-      BSTNode<T> *parent = pNode->parent;
- 
-      if(parent->left == pNode)
-	{
-	  delete pNode;
-	  //std::cout<<"padre hijo izquierdo"<<std::endl;
-	  parent->left = nullptr;
-
-	}
-      else
-	{
-	  delete pNode;
-	  parent->right = nullptr;
-	}
-
-      //delete pNode;
+template <typename T>
+BSTNode<T>* BST<T>::remove_node(BSTNode<T>* node, T k) {
+  BSTNode<T>* n = find_node(node, k);
+  if(n != nullptr){
+    BSTNode<T>* p = n->parent;
+    
+    //Case 1: No children
+    if(n->left == nullptr && n->right == nullptr){
+      //
+      std::cout<<"Case1\n";
+      //
+      if(p == nullptr){ //if node is root
+	root = nullptr;  
+      }else{
+	if(n == p->left) //if n is left child
+	  p->left = nullptr;
+	else
+	  p->right = nullptr;
+      }
+      delete n;
     }
-  else if(pNode->left != nullptr && pNode->right == nullptr)
-    {
-      //en el caso de que tenga un hijo bien sea en la inzquiera o la derecha pero no en los dos al mismo tiempo
-
-      BSTNode<T>*temp = pNode->left;
-      BSTNode<T>*padre = pNode->parent;
-      if(padre->left == pNode)
-	{
-	  delete pNode;
-	  padre->left = temp;
-	  temp->parent = padre;
-	}
-      else
-	{
-	  delete pNode;
-	  padre->right = temp;
-	  temp->parent = padre;
-	}
-      //delete pNode;
-      
+    
+    //Case 2: One child
+    else if(n->left == nullptr || n->right == nullptr){
+      //
+      std::cout<<"Case2\n";
+      //
+      BSTNode<T>* c;
+      if(n == p->left){ //if n is left child
+	if(n->left != nullptr) //if child was left
+	  c = n->left;
+	else //if child was right
+	  c = n->right;
+	if(p != nullptr) p->left = c;
+      }else{ //if n is right child
+	if(n->left != nullptr) //if child was left
+	  c = n->left;
+	else //if child was right
+	  c = n->right;
+	if(p != nullptr) p->right = c;
+      }
+      c->parent = p;
+      delete n;
     }
-  else if(pNode->right != nullptr && pNode->left == nullptr)
-    {
 
-      //en el caso de que tenga un hijo bien sea en la inzquiera o la derecha pero no en los dos al mismo tiempo
-      BSTNode<T>*temp = pNode->right;
-      if((pNode->parent)->left == pNode)
-	(pNode->parent)->left = temp;
-      else
-	(pNode->parent)->right = temp;
-
-      delete pNode;
-    }
-  else
-    {
-      BSTNode<T> *n = find_node(pNode, k);
-      //caso que tenga dos hijos
-      BSTNode<T>*s = sucessor(n);
-      //se halla el sucesor
+    //Case 3: Two children
+    else{
+      //
+      std::cout<<"Case3\n";
+      //
+      BSTNode<T>* s = successor(n);
       T new_key = s->key;
-      //la nueva key sera la de s
-      pNode = removeNode(s->parent, s->key);
+      p = remove_node(s->parent, s->key);
       n->key = new_key;
     }
+
+    return p;
+  }
   return nullptr;
 }
-
 
 
 template<typename T>
@@ -148,7 +135,7 @@ BSTNode<T> *BST<T>::predecessor(BSTNode<T> *pNode)
 }
 
 template<typename T>
-BSTNode<T> *BST<T>::sucessor(BSTNode<T> *pNode)
+BSTNode<T> *BST<T>::successor(BSTNode<T> *pNode)
 {
   if(pNode->right != nullptr)
     {
@@ -242,6 +229,8 @@ void BST<T>::insert_node(BSTNode<T> *&node, T k, BSTNode<T> *p)
 	}
     }
 
+  
+
 }
 
 template<typename T>
@@ -252,7 +241,7 @@ void BST<T>::test(T val)
   //std::cout<<"Highest element: "<<maximum(root)->key<<std::endl;
   //std::cout<<"El predecessor de: "<<val<<" es "<<predecessor(find(val))->key<<std::endl;
   //std::cout<<"El sucessor de: "<<val<<" es "<<sucessor(find(val))->key<<std::endl;
-  //removeNode(find(val));
+  remove_node(find_node(root, val), val);
   
 }
 
