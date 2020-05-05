@@ -19,5 +19,6 @@ int main()
   prueba.printHeap();
   prueba.pop();
   prueba.printHeap();
+  prueba.verify();
   return 0;
 }

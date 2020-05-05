@@ -30,8 +30,26 @@ public:
   T pop();
 
   void printHeap();
+
+  //verify
+  bool verify();
   
 };
+
+template<typename T>
+bool Bheap<T>::verify()
+{
+  bool retorno = true;
+  for(int i = 0; i < ((count/2) +1); i++)
+    {
+      if(array[i] > array[left(i)] && array[i] > array[right(i)])
+	{
+	  std::cout<<array[left(i)]<<" < " <<array[i]<< " > "<<array[right(i)]<<"; ";
+	}
+    }
+  std::cout<<std::endl;
+  return true;
+}
 
 
 template<typename T>
@@ -137,10 +155,9 @@ T Bheap<T>::pop()
     }
 
   count--;
-  for(int i = 0; i < count; i++)
-    {
-      max_heapify(i);
-    }
+  
+  max_heapify(0);
+    
 
   return ultimo;
 }
